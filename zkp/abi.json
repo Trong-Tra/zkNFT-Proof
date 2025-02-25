@@ -14,6 +14,16 @@
       "name": "nft_id",
       "public": true,
       "type": "field"
+    },
+    {
+      "name": "pub_key_x",
+      "public": true,
+      "type": "field"
+    },
+    {
+      "name": "pub_key_y",
+      "public": true,
+      "type": "field"
     }
   ],
   "output": {
