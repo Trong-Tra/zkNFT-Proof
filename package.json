@@ -2,5 +2,9 @@
   "devDependencies": {
     "prettier": "^3.5.2",
     "prettier-plugin-solidity": "^1.4.2"
+  },
+  "dependencies": {
+    "circomlibjs": "^0.1.7",
+    "ethers": "^6.13.5"
   }
 }
