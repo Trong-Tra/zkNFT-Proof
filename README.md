@@ -38,11 +38,11 @@ curl -LSfs get.zokrat.es | sh
 Then, clone this repository:
 
 ```sh
-git clone https://github.com/your-repo/zk_nft_proof.git
-cd zk_nft_proof
+git clone https://github.com/Trong-Tra/zkNFT-Proof.git
+cd zkNFT-Proof
 ```
 
-Install dependencies for JavaScript scripts (if applicable):
+Install dependencies:
 
 ```sh
 npm install
@@ -114,10 +114,10 @@ PASSED
 ## 🔒 Security Considerations
 
 - The **private key is never exposed**; only the **hashed address** is public.
-- For this repo, I use the based testing key from Foundry itself so I have no worry of exposing this key. If you implemented this is on your project, please consider using dotenv, it is a good practice of not exposing your private keys.
+- For this repo, I use the based testing key from Foundry itself so I have no worry of exposing this key. If you implemented this is on your project, please consider using dotenv or your preferable method of hidding your private keys, it is a good practice of not exposing your private keys.
 - The **Poseidon hash function** ensures one-way encryption, making it **impossible** to derive the private key.
 - The proof only shows **correct NFT ownership**, not the actual identity.
-- For added privacy, a **random salt** can be introduced in the hashing process.
+- For added privacy, a **random salt** can be introduced in the hashing process. Multiple rounds could increase the confidence level of the zkp.
 
 ---
 
