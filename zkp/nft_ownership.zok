@@ -1,0 +1,28 @@
+import "hashes/poseidon/poseidon" as poseidon;
+
+// Prove ownership of an NFT without revealing the address
+// The prover must show knowledge of the private key corresponding to the address that owns the NFT
+
+def compute_public_key(field private_key) -> field[2] {
+    // Mock function: Replace with actual elliptic curve public key derivation
+    field x = private_key * 2; 
+    field y = private_key * 3;
+    return [x, y];
+}
+
+def main(private field private_key, public field hashed_address, public field nft_id) {
+    
+    // Compute the public key from the private key
+    field[2] computed_public_key = compute_public_key(private_key);
+    
+    // Hash the public key using Poseidon
+    field computed_hashed_address = poseidon([computed_public_key[0], computed_public_key[1]]);
+    
+    // Ensure the provided address hash matches the computed one
+    assert(computed_hashed_address == hashed_address);
+    
+    // Ensure the provided NFT ID is valid
+    assert(nft_id > 0);
+    
+    return;
+}

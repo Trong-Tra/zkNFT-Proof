@@ -1,0 +1,25 @@
+{
+  "inputs": [
+    {
+      "name": "private_key",
+      "public": false,
+      "type": "field"
+    },
+    {
+      "name": "hashed_address",
+      "public": true,
+      "type": "field"
+    },
+    {
+      "name": "nft_id",
+      "public": true,
+      "type": "field"
+    }
+  ],
+  "output": {
+    "type": "tuple",
+    "components": {
+      "elements": []
+    }
+  }
+}
