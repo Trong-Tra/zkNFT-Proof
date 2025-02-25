@@ -38,7 +38,7 @@ jobs:
 
             - name: Install ZoKrates
               run: |
-                  curl -LSs https://raw.githubusercontent.com/Zokrates/ZoKrates/master/install.sh | sh
+                  curl -LSfs get.zokrat.es | sh
                   echo "$(pwd)/zokrates" >> $GITHUB_PATH
 
             - name: Run correct proof verification
