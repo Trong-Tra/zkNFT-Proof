@@ -5,15 +5,18 @@ import "./NFT.sol";
 import "./interfaces/INFTFactory.sol";
 
 contract NFTFactory is INFTFactory {
-    address[] public deployedNFTs;
+	address[] public deployedNFTs;
 
-    function createNFT(string memory name, string memory symbol) public returns (address) {
-        NFT newNFT = new NFT(name, symbol);
-        deployedNFTs.push(address(newNFT));
-        return address(newNFT);
-    }
+	function createNFT(
+		string memory name,
+		string memory symbol
+	) public returns (address) {
+		NFT newNFT = new NFT(name, symbol);
+		deployedNFTs.push(address(newNFT));
+		return address(newNFT);
+	}
 
-    function getDeployedNFTs() public view returns (address[] memory) {
-        return deployedNFTs;
-    }
+	function getDeployedNFTs() public view returns (address[] memory) {
+		return deployedNFTs;
+	}
 }
