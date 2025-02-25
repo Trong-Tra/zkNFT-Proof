@@ -6,9 +6,13 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 
 contract NFT is ERC721, Ownable {
     uint256 public tokenCounter;
+    string public baseURI;
 
-    constructor() ERC721("ZeroKnowledgeNFT", "ZKNFT") {
+    constructor(string memory _name, string memory _symbol, string memory _initialBaseURI) 
+        ERC721(_name, _symbol) 
+        Ownable(msg.sender) {
         tokenCounter = 0;
+        baseURI = _initialBaseURI;
     }
 
     function mint(address to) public onlyOwner {
@@ -23,5 +27,18 @@ contract NFT is ERC721, Ownable {
 
     function ownerOfNFT(uint256 tokenId) public view returns (address) {
         return ownerOf(tokenId);
+    }
+    
+    function _baseURI() internal view override returns (string memory) {
+        return baseURI;
+    }
+    
+    function setBaseURI(string memory _newBaseURI) public onlyOwner {
+        baseURI = _newBaseURI;
+    }
+    
+    function burn(uint256 tokenId) public {
+        require(_isApprovedOrOwner(msg.sender, tokenId), "Caller is not owner nor approved");
+        _burn(tokenId);
     }
 }
