@@ -32,10 +32,6 @@ contract NFT is ERC721, Ownable {
 	}
 
 	function transferNFT(address from, address to, uint256 tokenId) public {
-		require(
-			_isApprovedOrOwner(msg.sender, tokenId),
-			"Caller is not owner nor approved"
-		);
 		_transfer(from, to, tokenId);
 	}
 
@@ -47,5 +43,9 @@ contract NFT is ERC721, Ownable {
 	) public view returns (bool) {
 		uint[1] memory input = [hashedAddress]; // Input as an array
 		return verifier.verifyProof(a, b, c, input);
+	}
+
+	function setVerifier(address _verifier) public onlyOwner {
+		verifier = IVerifier(_verifier);
 	}
 }
