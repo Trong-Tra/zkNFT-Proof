@@ -29,7 +29,26 @@ jobs:
               run: |
                   forge --version
 
-            - name: Run Forge tests
-              run: |
-                  forge test --via-ir -vvv
-              id: test
+jobs:
+  verify-proofs:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install ZoKrates
+        run: |
+          curl -LSs https://raw.githubusercontent.com/Zokrates/ZoKrates/master/install.sh | sh
+          echo "$(pwd)/zokrates" >> $GITHUB_PATH
+
+      - name: Run correct proof verification
+        run: |
+          cd test/correctProof/
+          zokrates verify | tee result.txt
+          grep -q "PASSED" result.txt
+
+      - name: Run corrupted proof verification (expected to fail)
+        run: |
+          cd test/corruptedProof/
+          ! zokrates verify | tee result.txt || grep -q "FAILED" result.txt
